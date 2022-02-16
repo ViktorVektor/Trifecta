@@ -64,8 +64,6 @@ void loop()
     Serial.println(rightPos);
   }
 
-  curr = stepper.currentPosition();
-
   stepper.runToNewPosition(leftPos);
 
   stepperTwo.runToNewPosition(rightPos);
