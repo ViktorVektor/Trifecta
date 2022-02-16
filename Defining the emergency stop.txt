@@ -1,0 +1,39 @@
+Defining the emergency stop
+- must be set up in a way that stops the current operation as soon as possible
+	(ideally within 1 loop cycle)
+
+// >>>>>>>>>>>>>>>>>>>>>>> AT THE VERY TOP
+// Emergency stop condition
+#define ESTOP         2 // pin 2 on arudino
+boolean STOP_THE_MACHINE = false;
+
+void EMERGENCY_STOP()
+{
+  // dictate any emergency stop operations here
+  STOP_THE_MACHINE = true;
+  detachInterrupt(digitalPinToInterrupt(ESTOP)); 
+}
+
+void setup()
+{
+	pinMode(ESTOP, INPUT_PULLUP);
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>> WITHIN THE LOOP
+void loop()
+{
+	if(!STOP_THE_MACHINE)
+	{
+		// .. normal operation
+	}
+	else
+	{
+		digitalWrite(stepperEnablePin, HIGH);
+		// . . . turn off any motors or moving components
+
+		while(true)
+		{
+			// park here until the arduino or system is power cycled
+		}
+	}
+}
