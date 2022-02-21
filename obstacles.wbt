@@ -1,0 +1,27 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.004602675767814836 0.9999586521386536 -0.007842792157374151 1.0608352287030598
+  position -1.7693292166153953 0.01184248303898537 2.860960653677856
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 1 1
+}
+WoodenBox {
+  translation 0 0 0.05
+  size 0.1 0.1 0.1
+  mass 1
+}
+E-puck {
+  translation -0.12898927845202415 0.34992605006000277 -6.431310537660141e-05
+  rotation -7.922491792917897e-05 -5.8523622734329945e-05 -0.9999999951491989 3.087839176327679
+  controller "EPuckGoForward"
+  controllerArgs [
+    ""
+  ]
+}
