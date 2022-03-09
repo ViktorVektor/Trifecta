@@ -56,6 +56,7 @@ AccelStepper stepperC = AccelStepper(1, stepC, dirC);
 MultiStepper steppers;
 
 // function for defining stepper movement direction
+// moves the steppers for a certain number of steps
 void moveStepper(int input, AccelStepper motor)
 {
   const int increment = 10; // steps per click of the encoder
@@ -64,12 +65,12 @@ void moveStepper(int input, AccelStepper motor)
   if (input == FORWARD)
   {
     pos += increment;
-    motor.runToNewPosition(pos);
+    motor.moveTo(pos);
   }
   else if (input == BACK)
   {
     pos -= increment;
-    motor.runToNewPosition(pos);
+    motor.moveTo(pos);
   }
   else
     motor.stop();
@@ -121,38 +122,6 @@ void loop() {
   speedC = abs(mapC);
 
 
-//    Serial.print(pwmValueC);
-//    Serial.println("  ");
-//    Serial.print(speedB);
-
-
-
-  //int pulseWidth = 3000-speed;
-
-
-  //  Serial.print("  ");
-  //  Serial.print(pulseWidth);
-  //  Serial.println();
-
-//  steppers.moveTo(100);
-//  steppers.runSpeedToPosition(); // blocks functions until all steppers in position
-//  delay(1000);
-
-//  steppers.moveTo(200);
-//  steppers.runSpeedToPosition(); // blocks functions until all steppers in position
-
-//  moveStepper(FORWARD, stepperA);
-//  moveStepper(FORWARD, stepperB);
-//  moveStepper(FORWARD, stepperC);
-//
-//  delay(3000);
-//
-//  moveStepper(BACK, stepperA);
-//  moveStepper(BACK, stepperB);
-//  moveStepper(BACK, stepperC);
-//
-//  delay(3000);
-
   if (mapA > 200) {
     //    digitalWrite(dirPin, LOW); //Changes the rotations direction
     // Makes 400 pulses for making two full cycle rotation
@@ -161,14 +130,6 @@ void loop() {
     }
   }
   else if (mapA < -200) {
-    //    digitalWrite(dirPin, HIGH); // Enables the motor to move in a particular direction
-    // Makes 200 pulses for making one full cycle rotation
-    //for(int x = 0; x < (steps); x++) {
-    //    digitalWrite(stepPin, HIGH);
-    //    delayMicroseconds(pulseWidth);
-    //    digitalWrite(stepPin, LOW);
-    //    delayMicroseconds(pulseWidth);
-    //}
     for(int x = 0; x < (steps); x++) {
         moveStepper(BACK, stepperA);
     }
@@ -201,11 +162,4 @@ void loop() {
   }
   else
     moveStepper(STOP, stepperC);
-
-
-  
-
-  
-
-  
 }
