@@ -59,12 +59,19 @@ void loop()
     Serial.print(destination[2]);
     Serial.println("");
   }
-  while(stepper1.distanceToGo()!=0 && stepper2.distanceToGo()!=0 && stepper3.distanceToGo()!=0){
+  while(inMovement()){
     stepper1.run();
     stepper2.run();
     stepper3.run();
     Serial.println(".");
   }
+ }
+
+ bool inMovement(){
+  if (stepper1.distanceToGo()!=0){return true;}
+  if (stepper2.distanceToGo()!=0){return true;}
+  if (stepper3.distanceToGo()!=0){return true;}
+  else {return false;}
  }
 
 
